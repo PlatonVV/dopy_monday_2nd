@@ -1,5 +1,6 @@
 import { CurrentBankomat } from "./CurrentBankomat";
 import { MoneyType } from "./App";
+import styled, { css } from "styled-components";
 
 type CityPropsType = {
   data: MoneyType[];
@@ -7,16 +8,18 @@ type CityPropsType = {
 
 export const City = (props: CityPropsType) => {
   const mappedMoney = props.data.map((el) => {
-    return (
-      <div key={el.number}>
-        <div>{el.banknotes}</div>
-        <div>{el.value}</div>
-        <div>{el.number}</div>
-      </div>
-    );
+    return <CurrentBankomat key={el.number} money={el} />;
   });
-  return <div>{mappedMoney}</div>;
+  return <Wrapper>{mappedMoney}</Wrapper>;
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 30px;
+`;
+
 //2
 // Отлично, но теперь давайте совсем все сделаем по красоте. Вынесем верстку в отдельную компоненту и ее замапим!
 // Ну и наконец давайте версточку натянем, для этого будем использовать StyledComponents
