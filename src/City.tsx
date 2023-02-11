@@ -1,34 +1,22 @@
-import React from 'react';
-import {CurrentBankomat} from "./CurrentBankomat";
-import {MoneyType} from "./App";
+import { CurrentBankomat } from "./CurrentBankomat";
+import { MoneyType } from "./App";
 
 type CityPropsType = {
-    data: any //встречаем денюжки
-}
+  data: MoneyType[];
+};
 
 export const City = (props: CityPropsType) => {
-
-    // пока это пропускам
-    // const mappedMoney = props.data.map((el: MoneyType, index) => (
-    //     <CurrentBankomat
-    //         key={index}
-    //         money={el}
-    //     />
-    // ))
-
-
+  const mappedMoney = props.data.map((el) => {
     return (
-        <div>
-            <div>Ну все парни, мапимся -выводим наши денюжки</div>
-            <div>На верстку ПОКА не обращаем внимания , сейчас занимаемся логикой</div>
-            {/*<div>{mappedMoney}</div>*/}
-        </div>
+      <div key={el.number}>
+        <div>{el.banknotes}</div>
+        <div>{el.value}</div>
+        <div>{el.number}</div>
+      </div>
     );
+  });
+  return <div>{mappedMoney}</div>;
 };
-//1
-// Вроде все норм, но нужно причесать код. Давайте создадим const mappedMoney = props.data.map(el=>el...)
-// Т.е. нам нужно вынести map из вертски, оставив в верстке только mappedMoney
-
 //2
 // Отлично, но теперь давайте совсем все сделаем по красоте. Вынесем верстку в отдельную компоненту и ее замапим!
 // Ну и наконец давайте версточку натянем, для этого будем использовать StyledComponents
